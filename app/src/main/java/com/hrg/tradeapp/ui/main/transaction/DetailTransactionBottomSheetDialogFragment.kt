@@ -32,9 +32,9 @@ class DetailTransactionBottomSheetDialogFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         args.transaction.let { transaction ->
-            mBinding.tvAmount.text = "${transaction.amount} $"
-//            mBinding.tvDate.text = "${transaction.date} ${transaction.time}"
-            mBinding.tvDate.text = "${transaction.timestamp}"
+            mBinding.tvAmount.text =
+                getString(R.string.str_dollar_placeholder, transaction.amount.toString())
+            mBinding.tvDate.text = transaction.timestamp
             mBinding.tvCard.text = transaction.cardNumber.toString()
             mBinding.tvId.text = (10000 until 999999).random().toString()
             when (transaction.amount > 0) {

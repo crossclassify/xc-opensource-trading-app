@@ -10,6 +10,7 @@ import com.hrg.tradeapp.R
 import com.hrg.tradeapp.databinding.FragmentRankBinding
 import com.hrg.tradeapp.domain.models.User
 import com.hrg.tradeapp.ui.adapter.RankAdapter
+import com.hrg.tradeapp.util.DATE_PATTERN
 import com.hrg.tradeapp.util.base.BaseFragment
 import com.hrg.tradeapp.util.gone
 import com.hrg.tradeapp.util.show
@@ -64,8 +65,10 @@ class RankFragment : BaseFragment<RankViewModel, FragmentRankBinding>() {
             adapter.setRank(it)
             findMe(it)
             val time = Calendar.getInstance().time
-            mViewBindingFrag.tvUpdate.text =
-                "Update at: ${SimpleDateFormat(" yyyy / MM / dd HH:mm").format(time)}"
+            mViewBindingFrag.tvUpdate.text = getString(
+                R.string.str_update_time,
+                SimpleDateFormat(DATE_PATTERN, Locale.ENGLISH).format(time)
+            )
             loading = false
         }
     }
@@ -73,8 +76,10 @@ class RankFragment : BaseFragment<RankViewModel, FragmentRankBinding>() {
     private fun findMe(it: List<User>) {
         val rank = it.indexOfFirst { user -> user.id.id == App.userId }
         if (rank != -1) {
-            mViewBindingFrag.tvRank.text = "${rank + 1}"
-            mViewBindingFrag.tvProfit.text = "${it[rank].totalValue} $"
+            val rankText = rank + 1
+            mViewBindingFrag.tvRank.text = rankText.toString()
+            mViewBindingFrag.tvProfit.text =
+                getString(R.string.str_dollar_placeholder, it[rank].totalValue.toString())
         }
     }
 

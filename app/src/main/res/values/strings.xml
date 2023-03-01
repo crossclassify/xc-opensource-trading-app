@@ -17,29 +17,18 @@
     <string name="str_submit_deposit">Submit Deposit</string>
     <string name="str_submit_withdraw">Submit Withdraw</string>
     <string name="str_your_shares">Your shares</string>
-
-    <string name="hint_card">Card</string>
-    <string name="hint_amount">Amount</string>
-    <string name="hint_password">Password</string>
-    <string name="hint_username">Username</string>
-
-    <string name="error_select_card">Select card</string>
-    <string name="error_enter_amount">Enter amount</string>
     <string name="str_table_header_rank">Rank</string>
     <string name="str_table_header_id">ID</string>
     <string name="str_table_header_profit">Profit</string>
     <string name="str_table_header_shares_name">Share name</string>
     <string name="str_table_header_volume">Volume</string>
     <string name="str_table_header_value">Value</string>
-    <string name="hint_card_name">Card name</string>
-    <string name="hint_card_number">Card number</string>
     <string name="str_submit">Submit</string>
     <string name="str_title_transaction_information">Transaction information</string>
     <string name="str_amount">Amount:</string>
     <string name="str_date">Date:</string>
     <string name="str_tracking_code">Tracking code:</string>
     <string name="str_card_number">Card number:</string>
-    <string name="hint_share_symbol">Share symbol</string>
     <string name="str_buy">Buy</string>
     <string name="str_sell">Sell</string>
     <string name="str_submit_buy_order">Submit buy order</string>
@@ -48,25 +37,46 @@
     <string name="str_title_tab_my_shares">My shares</string>
     <string name="str_title_shares">Shares</string>
     <string name="str_share_current_price">%1$sCurrent Price</string>
+    <string name="str_singup">Signup</string>
+    <string name="str_table_header_percentage">Percentage</string>
+    <string name="str_table_header_date">Date</string>
+    <string name="str_table_header_time">Time</string>
+    <string name="str_btn_signup">Not have an account? sign up here</string>
+    <string name="str_btn_login">Already have an account? Login</string>
+    <string name="str_available_balance">Available Balance:</string>
+    <string name="str_choose_symbol">Choose a symbol</string>
+    <string name="str_dollar_placeholder">%1$s $</string>
+    <string name="str_placeholder">%1$s %2$s</string>
+    <string name="str_login_success">Login Successful</string>
+    <string name="str_update_time">Update at: %1$s</string>
+    <string name="str_try_again">Try again</string>
+    <string name="str_exit">Exit</string>
+
+    <string name="hint_card">Card</string>
+    <string name="hint_amount">Amount</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_card_name">Card name</string>
+    <string name="hint_card_number">Card number</string>
+    <string name="hint_share_symbol">Share symbol</string>
     <string name="hint_email">Email</string>
     <string name="hint_confirm_password">Confirm password</string>
-    <string name="str_singup">Signup</string>
     <string name="hint_name">Name</string>
+    <string name="hint_quantity">Quantity</string>
+
+    <string name="error_select_card">Select card</string>
+    <string name="error_enter_amount">Enter amount</string>
     <string name="error_enter_email">Enter your email</string>
     <string name="error_enter_password">Enter your password</string>
     <string name="error_enter_name">Enter your name</string>
     <string name="error_enter_password_not_match">Not match</string>
     <string name="error_email_already_use">This username is already in use</string>
-    <string name="str_table_header_percentage">Percentage</string>
     <string name="error_select_share">Select share</string>
     <string name="error_entered_amount_not_valid">Entered amount not valid</string>
     <string name="error_amount_greater_balance">Amount is more greater than your balance</string>
-    <string name="str_table_header_date">Date</string>
-    <string name="str_table_header_time">Time</string>
-
-    <string name="str_btn_signup">Not have an account? sign up here</string>
-    <string name="str_btn_login">Already have an account? Login</string>
-    <string name="str_available_balance">Available Balance:</string>
-    <string name="hint_quantity">Quantity</string>
-    <string name="str_choose_symbol">Choose a symbol</string>
+    <string name="error_user_pass_not_correct">Username or password not correct</string>
+    <string name="error_signup_fail">Signup failed</string>
+    <string name="error_selected_card_exist">This card is exist</string>
+    <string name="error_connection_fail">Connection Failed</string>
+    <string name="error_cannot_connect_server">Cannot connect to server.</string>
 </resources>

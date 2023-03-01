@@ -66,9 +66,10 @@ class SignupFragment : BaseFragment<SignupViewModel, FragmentSignupBinding>(),
         initObserver()
         initClick()
         initTextWatchers()
-        mViewBindingFrag.tvGoToSignup.setText(SpannableString(getString(R.string.str_btn_login)).apply {
-            setSpan(UnderlineSpan(), 25, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        })
+        mViewBindingFrag.tvGoToSignup.text =
+            SpannableString(getString(R.string.str_btn_login)).apply {
+                setSpan(UnderlineSpan(), 25, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
     }
 
     private fun initObserver() {
@@ -80,7 +81,7 @@ class SignupFragment : BaseFragment<SignupViewModel, FragmentSignupBinding>(),
                         requireContext(),
                         mViewBindingFrag.root,
                         MessageType.ERROR,
-                        "Username or password not correct"
+                        getString(R.string.error_user_pass_not_correct)
                     )
                 }
                 else -> {
@@ -89,7 +90,7 @@ class SignupFragment : BaseFragment<SignupViewModel, FragmentSignupBinding>(),
                             requireContext(),
                             mViewBindingFrag.root,
                             MessageType.SUCCESS,
-                            "Login Successful"
+                            getString(R.string.str_login_success)
                         )
                         if (requireActivity() is AuthorizeActivity) (requireActivity() as AuthorizeActivity).goToNextPage(
                             it.id.id
@@ -99,7 +100,7 @@ class SignupFragment : BaseFragment<SignupViewModel, FragmentSignupBinding>(),
                             requireContext(),
                             mViewBindingFrag.root,
                             MessageType.ERROR,
-                            "Username or password not correct"
+                            getString(R.string.error_user_pass_not_correct)
                         )
                     }
                 }
@@ -114,7 +115,7 @@ class SignupFragment : BaseFragment<SignupViewModel, FragmentSignupBinding>(),
                         requireContext(),
                         mViewBindingFrag.root,
                         MessageType.ERROR,
-                        "Signup Failed"
+                        getString(R.string.error_signup_fail)
                     )
                 }
                 else -> {

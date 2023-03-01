@@ -8,7 +8,6 @@ import android.widget.AdapterView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.crossclassify.trackersdk.utils.ScreenNavigationTracking
 import com.github.mikephil.charting.data.Entry
@@ -22,14 +21,11 @@ import com.hrg.tradeapp.databinding.FragmentSearchBinding
 import com.hrg.tradeapp.domain.models.Basket
 import com.hrg.tradeapp.domain.models.Price
 import com.hrg.tradeapp.ui.adapter.SharesAdapter
-import com.hrg.tradeapp.util.MessageType
-import com.hrg.tradeapp.util.OrderType
+import com.hrg.tradeapp.util.*
 import com.hrg.tradeapp.util.alert.CustomSnackBar
 import com.hrg.tradeapp.util.base.BaseFragment
 import com.hrg.tradeapp.util.customPopupWindow.CustomPopupWindow
-import com.hrg.tradeapp.util.gone
 import com.hrg.tradeapp.util.mInterface.ItemClick
-import com.hrg.tradeapp.util.show
 import com.hrg.tradeapp.util.toolbar.ToolbarManager
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -54,8 +50,6 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(), V
 
     private val adapter by lazy { SharesAdapter(this) }
 
-    private val arg by navArgs<SearchFragmentArgs>()
-
     private var selectedShare: Price? = null
         set(value) {
             value?.let {
@@ -63,7 +57,8 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(), V
 //                mViewBindingFrag.lcChart.show()
                 mViewBindingFrag.tvShareCurrentPriceField.text =
                     getString(R.string.str_share_current_price, "${it.sym} ")
-                mViewBindingFrag.tvShareCurrentPrice.text = "${value.price} $"
+                mViewBindingFrag.tvShareCurrentPrice.text =
+                    getString(R.string.str_dollar_placeholder, value.price.toString())
                 if (value != field) {
                     mViewModelFrag.getChartData(value.sym)
                     loadingChart = true
@@ -76,7 +71,8 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(), V
                 mViewBindingFrag.lcChart.clear()
                 mViewBindingFrag.tvShareCurrentPriceField.text =
                     getString(R.string.str_share_current_price, "")
-                mViewBindingFrag.tvShareCurrentPrice.text = "0 $"
+                mViewBindingFrag.tvShareCurrentPrice.text =
+                    getString(R.string.str_dollar_placeholder, 0.toString())
             }
         }
 
@@ -87,7 +83,8 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(), V
             value?.let {
                 baskets.find { basket -> basket.stockName == it.stockName }.let {
                     it?.let {
-                        mViewBindingFrag.tvCurrentAmount.text = "${it.amount} ${it.stockName}"
+                        mViewBindingFrag.tvCurrentAmount.text =
+                            getString(R.string.str_placeholder, it.amount.toString(), it.stockName)
                     }
                 }
             }
@@ -190,7 +187,9 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(), V
         mViewBindingFrag.lcChart.let { lineChart ->
             val xAxis = lineChart.xAxis
             xAxis.valueFormatter = object : ValueFormatter() {
-                private val mFormat: SimpleDateFormat = SimpleDateFormat("MM/dd", Locale.ENGLISH)
+                private val mFormat: SimpleDateFormat =
+                    SimpleDateFormat(CALENDAR_DATE_PATTERN, Locale.ENGLISH)
+
                 override fun getFormattedValue(value: Float): String {
                     return mFormat.format(Date(value.toLong()))
                 }
@@ -206,13 +205,11 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(), V
         mNavController.currentBackStackEntry?.savedStateHandle?.remove<String>("data")?.let {
             focusOnMyShare(it)
         }
-        arg.inputModel?.let {
-            focusOnMyShare(it.symbol)
-        }
     }
 
     private fun setBalance() {
-        mViewBindingFrag.tvYourBalance.text = "${App.user?.balance} $"
+        mViewBindingFrag.tvYourBalance.text =
+            getString(R.string.str_dollar_placeholder, App.user?.balance.toString())
     }
 
     private fun initTextWatcher() {
@@ -223,7 +220,8 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(), V
                 else -> it.toString().toFloat()
             }
             val result = number * (selectedShare?.price ?: 0f)
-            mViewBindingFrag.tvTotalOrderPrice.text = "$result $"
+            mViewBindingFrag.tvTotalOrderPrice.text =
+                getString(R.string.str_dollar_placeholder, result.toString())
         }
         mViewBindingFrag.etShareSymbol.addTextChangedListener {
             mViewBindingFrag.tvErrorShare.gone()
@@ -243,7 +241,7 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(), V
             mViewModelFrag.prices.addAll(it)
         }
         mViewModelFrag.socketErrors.observe(viewLifecycleOwner) {
-            if (it == "Ok.") {
+            if (it == SUCCESS_SOCKET_MESSAGE) {
                 mViewModelFrag.getData()
                 changeTab(1)
                 clearFields()
@@ -295,11 +293,6 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(), V
         mViewBindingFrag.rvMyShares.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         mViewBindingFrag.rvMyShares.adapter = adapter
-
-//        val dividerItemDecoration = DividerItemDecoration(
-//            mViewBindingFrag.rvMyShares.context, LinearLayoutManager.VERTICAL
-//        )
-//        mViewBindingFrag.rvMyShares.addItemDecoration(dividerItemDecoration)
     }
 
     private fun initClicks() {
@@ -394,18 +387,6 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(), V
             }
         }
         return result
-    }
-
-    private fun getChart(context: Context): Drawable? {
-        try {
-            val icons: TypedArray = context.resources.obtainTypedArray(R.array.arrayCharts)
-            val ran = (0..27).random()
-            val d1 = icons.getDrawable(ran)!!
-            icons.recycle()
-            return d1
-        } catch (e: Exception) {
-        }
-        return null
     }
 
     private fun changeTab(index: Int) {

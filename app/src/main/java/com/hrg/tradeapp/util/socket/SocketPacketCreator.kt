@@ -164,8 +164,8 @@ class SocketPacketCreator @Inject constructor() {
 
     fun getChart(
         stockName: String,
-        start: String = "2022-12-22",
-        end: String = "2023-01-21"
+        start: String,
+        end: String
     ): String {
         val json = createBasePacket(SocketActions.GET, SocketResources.CHARTS).apply {
             put(PAYLOAD_FIELD_NAME, JSONObject().apply {

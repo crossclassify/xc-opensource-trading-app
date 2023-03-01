@@ -3,9 +3,9 @@ package com.hrg.tradeapp.ui.splash
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.crossclassify.trackersdk.data.model.FieldMetaData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.hrg.tradeapp.BuildConfig
+import com.hrg.tradeapp.R
 import com.hrg.tradeapp.databinding.ActivitySplashBinding
 import com.hrg.tradeapp.ui.authorize.AuthorizeActivity
 import com.hrg.tradeapp.util.SocketConnection
@@ -33,12 +33,12 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
                     }
                 }
             } else if (status == SocketConnection.FAILED) {
-                MaterialAlertDialogBuilder(this).setTitle("Connection Failed")
-                    .setMessage("Cannot connect to server.")
+                MaterialAlertDialogBuilder(this).setTitle(getString(R.string.error_connection_fail))
+                    .setMessage(getString(R.string.error_cannot_connect_server))
                     .setCancelable(false)
-                    .setPositiveButton("Try again") { _, _ ->
+                    .setPositiveButton(getString(R.string.str_try_again)) { _, _ ->
                         mViewModel.socketConnectionTools.tryAgain()
-                    }.setNegativeButton("Exit") { dialog, _ ->
+                    }.setNegativeButton(getString(R.string.str_exit)) { dialog, _ ->
                         dialog.dismiss()
                         finish()
                     }.show()

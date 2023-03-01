@@ -43,10 +43,5 @@
         android:id="@+id/searchFragment"
         android:name="com.hrg.tradeapp.ui.main.search.SearchFragment"
         android:label="SearchFragment" >
-        <argument
-            android:name="inputModel"
-            app:argType="com.hrg.tradeapp.util.FakeShare"
-            app:nullable="true"
-            android:defaultValue="@null" />
     </fragment>
 </navigation>

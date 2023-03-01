@@ -1,5 +1,6 @@
 package com.hrg.tradeapp.ui.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
@@ -20,8 +21,11 @@ class SharesAdapter(private val listener: ItemClick<String>) :
     class ViewHolder(
         private val binding: ItemSharesBinding,
         private val listener: ItemClick<String>
-    ) :
-        RecyclerView.ViewHolder(binding.root), OnClickListener {
+    ) : RecyclerView.ViewHolder(binding.root), OnClickListener {
+
+        private val context: Context
+            get() = binding.root.context
+
         private var _item: Basket? = null
         fun bind(item: Basket) {
             _item = item
@@ -31,7 +35,10 @@ class SharesAdapter(private val listener: ItemClick<String>) :
             }
             binding.tvAmount.text = item.amount.toString()
             binding.tvSymbol.text = item.stockName
-            binding.tvValue.text = "${(item.orderPrice * item.amount)} $"
+            binding.tvValue.text = context.getString(
+                R.string.str_dollar_placeholder,
+                (item.orderPrice * item.amount).toString()
+            )
 //            val percentage = ((item.wacc / item.orderPrice) * 100).toInt() - 100
             val percentage = ((item.orderPrice - item.wacc) / item.wacc) * 100
             val profit = (item.orderPrice - item.wacc) * item.amount
@@ -63,8 +70,27 @@ class SharesAdapter(private val listener: ItemClick<String>) :
     override fun getItemCount(): Int = data.size
 
     fun setShares(data: List<Basket>) {
-        this.data.clear()
+        val numberItems = this.data.size
+        if (numberItems != 0) {
+            this.data.clear()
+        }
         this.data.addAll(data)
-        notifyDataSetChanged()
+        if (numberItems != 0) {
+            when {
+                data.size > numberItems -> {
+                    notifyItemRangeChanged(0, numberItems)
+                    notifyItemRangeInserted(numberItems, data.size - numberItems)
+                }
+                data.size == numberItems -> {
+                    notifyItemRangeChanged(0, numberItems)
+                }
+                data.size < numberItems -> {
+                    notifyItemRangeChanged(0, data.size)
+                    notifyItemRangeRemoved(data.size, numberItems - data.size)
+                }
+            }
+        } else {
+            notifyItemRangeInserted(0, data.size)
+        }
     }
 }

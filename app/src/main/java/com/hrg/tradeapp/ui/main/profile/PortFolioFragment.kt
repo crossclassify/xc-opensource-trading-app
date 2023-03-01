@@ -95,9 +95,9 @@ class PortFolioFragment : BaseFragment<PortfolioViewModel, FragmentPortfolioBind
             App.user = it
             it?.let {
                 mViewBindingFrag.tvUsername.text = it.name
-                mViewBindingFrag.tvBalance.text = "${it.balance} $"
-                mViewBindingFrag.tvTotalShareValue.text = "${it.shareValue} $"
-                mViewBindingFrag.tvTotalValue.text = "${it.totalValue} $"
+                mViewBindingFrag.tvBalance.text = getString(R.string.str_dollar_placeholder,it.balance.toString())
+                mViewBindingFrag.tvTotalShareValue.text = getString(R.string.str_dollar_placeholder,it.shareValue.toString())
+                mViewBindingFrag.tvTotalValue.text = getString(R.string.str_dollar_placeholder,it.totalValue.toString())
             }
             loadingUser = false
         }

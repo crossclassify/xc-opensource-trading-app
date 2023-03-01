@@ -7,8 +7,4 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthorizeViewModel @Inject constructor() : BaseViewModel() {
-
-
-
-}
+class AuthorizeViewModel @Inject constructor() : BaseViewModel()

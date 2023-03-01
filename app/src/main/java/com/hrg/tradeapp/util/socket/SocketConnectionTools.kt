@@ -3,11 +3,8 @@ package com.hrg.tradeapp.util.socket
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hrg.tradeapp.domain.models.*
-import com.hrg.tradeapp.util.AuthorizePageType
-import com.hrg.tradeapp.util.SocketConnection
-import com.hrg.tradeapp.util.SocketResources
+import com.hrg.tradeapp.util.*
 import com.hrg.tradeapp.util.event.SingleLiveEvent
-import com.hrg.tradeapp.util.toConvertStringJsonToModel
 import io.crossbar.autobahn.websocket.WebSocketConnection
 import io.crossbar.autobahn.websocket.interfaces.IWebSocketConnectionHandler
 import io.crossbar.autobahn.websocket.types.ConnectionResponse
@@ -20,11 +17,6 @@ import javax.inject.Singleton
 class SocketConnectionTools @Inject constructor(
     private val socketPacketCreator: SocketPacketCreator
 ) : IWebSocketConnectionHandler {
-    // base url
-    // "wss://trade-ws-dinl5i5e5a-ts.a.run.app/socket.io"
-    companion object {
-        const val BASE_URL = "wss://trade-ws-dinl5i5e5a-ts.a.run.app/socket.io"
-    }
 
     private val mActionResult = SingleLiveEvent<Boolean>()
     val actionResult: LiveData<Boolean>
@@ -85,7 +77,7 @@ class SocketConnectionTools @Inject constructor(
 
     fun initConnection() {
         mConnection = WebSocketConnection()
-        mConnection?.connect(BASE_URL, this)
+        mConnection?.connect(BASE_SOCKET_URL, this)
     }
 
     fun destroyConnection() {

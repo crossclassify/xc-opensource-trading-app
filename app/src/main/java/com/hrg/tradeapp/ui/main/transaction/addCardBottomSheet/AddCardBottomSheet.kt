@@ -12,6 +12,7 @@ import com.crossclassify.trackersdk.data.model.FieldMetaData
 import com.crossclassify.trackersdk.utils.ScreenNavigationTracking
 import com.crossclassify.trackersdk.utils.base.TrackerBottomSheetDialogFragment
 import com.hrg.tradeapp.App
+import com.hrg.tradeapp.R
 import com.hrg.tradeapp.databinding.BottomSheetAddCardBinding
 import com.hrg.tradeapp.domain.models.Card
 import com.hrg.tradeapp.util.MessageType
@@ -64,7 +65,7 @@ class AddCardBottomSheet : TrackerBottomSheetDialogFragment(), View.OnClickListe
                             requireContext(),
                             mBinding.root,
                             MessageType.ERROR,
-                            "This card is exist"
+                            getString(R.string.error_selected_card_exist)
                         )
                         return false
                     }

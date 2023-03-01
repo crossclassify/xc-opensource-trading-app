@@ -3,6 +3,8 @@ package com.hrg.tradeapp
 import android.app.Application
 import com.crossclassify.trackersdk.utils.base.TrackerSdkApplication
 import com.hrg.tradeapp.domain.models.User
+import com.hrg.tradeapp.util.TRACKER_SITE_ID
+import com.hrg.tradeapp.util.TRACKER_TOKEN
 import com.hrg.tradeapp.util.socket.SocketConnectionTools
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
@@ -18,7 +20,7 @@ class App : TrackerSdkApplication() {
     }
 
     override fun onCreate() {
-        createDefaultConfig( 299, "Wz5C96h5dg37j4tlmVt3b6UD4O1GDLv34fHmfp6l")
+        createDefaultConfig(TRACKER_SITE_ID, TRACKER_TOKEN)
         super.onCreate()
         socketConnectionTools.initConnection()
     }

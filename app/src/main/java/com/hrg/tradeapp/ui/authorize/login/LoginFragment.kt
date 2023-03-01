@@ -63,9 +63,10 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>(), View
         initObserver()
         initClick()
         initTextWatchers()
-        mViewBindingFrag.tvGoToSignup.setText(SpannableString(getString(R.string.str_btn_signup)).apply {
-            setSpan(UnderlineSpan(), 21, 33, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        })
+        mViewBindingFrag.tvGoToSignup.text =
+            SpannableString(getString(R.string.str_btn_signup)).apply {
+                setSpan(UnderlineSpan(), 21, 33, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
     }
 
     private fun initObserver() {
@@ -77,7 +78,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>(), View
                         requireContext(),
                         mViewBindingFrag.root,
                         MessageType.ERROR,
-                        "Username or password not correct"
+                        getString(R.string.error_user_pass_not_correct)
                     )
                 }
                 else -> {
@@ -86,7 +87,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>(), View
                             requireContext(),
                             mViewBindingFrag.root,
                             MessageType.SUCCESS,
-                            "Login Successful"
+                            getString(R.string.str_login_success)
                         )
                         if (requireActivity() is AuthorizeActivity) (requireActivity() as AuthorizeActivity).goToNextPage(
                             it.id.id
@@ -96,7 +97,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>(), View
                             requireContext(),
                             mViewBindingFrag.root,
                             MessageType.ERROR,
-                            "Username or password not correct"
+                            getString(R.string.error_user_pass_not_correct)
                         )
                     }
                 }

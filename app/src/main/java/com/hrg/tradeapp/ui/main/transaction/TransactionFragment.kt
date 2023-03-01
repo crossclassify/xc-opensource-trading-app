@@ -13,13 +13,11 @@ import com.hrg.tradeapp.R
 import com.hrg.tradeapp.databinding.FragmentTransactionBinding
 import com.hrg.tradeapp.domain.models.Transaction
 import com.hrg.tradeapp.ui.adapter.TransactionAdapter
-import com.hrg.tradeapp.util.MessageType
+import com.hrg.tradeapp.util.*
 import com.hrg.tradeapp.util.alert.CustomSnackBar
 import com.hrg.tradeapp.util.base.BaseFragment
 import com.hrg.tradeapp.util.customPopupWindow.CustomPopupWindow
-import com.hrg.tradeapp.util.gone
 import com.hrg.tradeapp.util.mInterface.ItemClick
-import com.hrg.tradeapp.util.show
 import com.hrg.tradeapp.util.toolbar.ToolbarManager
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -237,10 +235,9 @@ class TransactionFragment : BaseFragment<TransactionViewModel, FragmentTransacti
                 if (checkFields()) {
                     loading = true
                     btnSub = true
-                    val dateFormat = SimpleDateFormat("yyyy/MM/dd")
-                    val timeFormat = SimpleDateFormat("HH:mm")
+                    val dateFormat = SimpleDateFormat(DATE_PATTERN, Locale.ENGLISH)
                     val date = Calendar.getInstance().time
-                    val timestamp = "${dateFormat.format(date)} ${timeFormat.format(date)}"
+                    val timestamp = dateFormat.format(date)
                     mViewModelFrag.addTransaction(
                         App.userId, when {
                             mViewBindingFrag.rbDeposit.isChecked -> mViewBindingFrag.etAmount.text.toString()
@@ -286,7 +283,8 @@ class TransactionFragment : BaseFragment<TransactionViewModel, FragmentTransacti
                 val balance =
                     mViewModelFrag.cardList?.find { card -> card.cardNumber == cardNumber }?.balance
                         ?: 0f
-                mViewBindingFrag.tvCardBalance.text = "$balance $"
+                mViewBindingFrag.tvCardBalance.text =
+                    getString(R.string.str_dollar_placeholder, balance.toString())
             }
             else -> {
                 // open add card

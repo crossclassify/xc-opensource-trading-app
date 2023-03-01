@@ -6,6 +6,7 @@ import com.hrg.tradeapp.domain.models.Basket
 import com.hrg.tradeapp.domain.models.Order
 import com.hrg.tradeapp.domain.models.Price
 import com.hrg.tradeapp.domain.models.User
+import com.hrg.tradeapp.util.DATE_CHART_PATTERN
 import com.hrg.tradeapp.util.OrderType
 import com.hrg.tradeapp.util.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -43,8 +44,10 @@ class SearchViewModel @Inject constructor() : BaseViewModel() {
             add(Calendar.DAY_OF_MONTH, -7)
         }.time
         val endDate = Calendar.getInstance().time
-        val startOutputDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(startDate)
-        val endOutputDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(endDate)
+        val startOutputDate =
+            SimpleDateFormat(DATE_CHART_PATTERN, Locale.getDefault()).format(startDate)
+        val endOutputDate =
+            SimpleDateFormat(DATE_CHART_PATTERN, Locale.getDefault()).format(endDate)
         println("$startOutputDate $endOutputDate")
 
         val packet2 = socketPacketCreator.getChart(stockName, startOutputDate, endOutputDate)
