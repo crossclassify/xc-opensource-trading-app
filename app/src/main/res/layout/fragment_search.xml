@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?colorBackground">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_with_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/svSearch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:animateLayoutChanges="true"
+        android:clipToPadding="false"
+        android:padding="@dimen/size_16dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
+
+            <com.crossclassify.trackersdk.utils.view.TrackerRadioGroup
+                android:id="@+id/rgTypePage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_radio_group"
+                android:orientation="horizontal"
+                android:tag="IncludeContentTracking"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:radio_field_name="order_type">
+
+                <RadioButton
+                    android:id="@+id/rbSell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_radio_btn_withdraw"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/str_sell"
+                    android:textColor="@color/color_radio_btn"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rbBuy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_radio_btn_deposit"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/str_buy"
+                    android:textColor="@color/color_radio_btn"
+                    android:textStyle="bold" />
+            </com.crossclassify.trackersdk.utils.view.TrackerRadioGroup>
+
+            <com.crossclassify.trackersdk.utils.view.TrackerEditText
+                android:id="@+id/etShareSymbol"
+                style="@style/EditTextPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_16dp"
+                android:drawableRight="@drawable/ic_arrow_bottom"
+                android:hint="@string/hint_share_symbol"
+                android:inputType="text"
+                android:tag="IncludeContentTracking"
+                app:fieldName="shareSymbol"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rgTypePage" />
+
+            <TextView
+                android:id="@+id/tvErrorShare"
+                style="@style/TextError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="@id/etShareSymbol"
+                app:layout_constraintTop_toBottomOf="@id/etShareSymbol" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lcChart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/size_8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvErrorShare" />
+
+            <ProgressBar
+                android:id="@+id/pbLoadingChart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/blue_100"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/lcChart"
+                app:layout_constraintLeft_toLeftOf="@id/lcChart"
+                app:layout_constraintRight_toRightOf="@id/lcChart"
+                app:layout_constraintTop_toTopOf="@id/lcChart" />
+
+            <com.crossclassify.trackersdk.utils.view.TrackerEditText
+                android:id="@+id/etAmount"
+                style="@style/EditTextPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_16dp"
+                android:hint="@string/hint_quantity"
+                android:inputType="number"
+                android:digits="0123456789"
+                android:maxLength="6"
+                android:tag="IncludeContentTracking"
+                app:fieldName="shareAmount"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lcChart" />
+
+            <TextView
+                android:id="@+id/tvErrorAmount"
+                style="@style/TextError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="@id/etAmount"
+                app:layout_constraintTop_toBottomOf="@id/etAmount" />
+
+            <RelativeLayout
+                android:id="@+id/rlInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_16dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/bg_information"
+                android:paddingVertical="@dimen/size_8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvErrorAmount">
+
+                <TextView
+                    android:id="@+id/tvCurrentAmountField"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="@dimen/size_16dp"
+                    android:animateLayoutChanges="true"
+                    android:text="Current Amount"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvCurrentAmount"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/size_16dp"
+                    android:animateLayoutChanges="true"
+                    android:text="0"
+                    android:visibility="gone" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tvCurrentAmountField"
+                    android:layout_marginHorizontal="@dimen/size_8dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:layout_marginBottom="@dimen/size_8dp"
+                    android:animateLayoutChanges="true"
+                    android:background="@color/gray_200"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvYourBalanceField"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divider"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/size_16dp"
+                    android:text="Your Balance" />
+
+                <TextView
+                    android:id="@+id/tvYourBalance"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tvYourBalanceField"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/size_16dp"
+                    android:text="0 $" />
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tvYourBalanceField"
+                    android:layout_marginHorizontal="@dimen/size_8dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:background="@color/gray_200" />
+
+                <TextView
+                    android:id="@+id/tvShareCurrentPriceField"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divider2"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/size_16dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:text="@string/str_share_current_price" />
+
+                <TextView
+                    android:id="@+id/tvShareCurrentPrice"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tvShareCurrentPriceField"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/size_16dp"
+                    android:text="0 $" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tvShareCurrentPriceField"
+                    android:layout_marginHorizontal="@dimen/size_8dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:background="@color/gray_200" />
+
+                <TextView
+                    android:id="@+id/tvTotalOrderPriceField"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divider1"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/size_16dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:text="Total order price" />
+
+                <TextView
+                    android:id="@+id/tvTotalOrderPrice"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tvTotalOrderPriceField"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/size_16dp"
+                    android:text="0 $" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnSubmit"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/size_16dp"
+                android:text="@string/str_submit_buy_order"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rlInformation" />
+
+            <ProgressBar
+                android:id="@+id/pbLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/btnSubmit"
+                app:layout_constraintLeft_toLeftOf="@id/btnSubmit"
+                app:layout_constraintRight_toRightOf="@id/btnSubmit"
+                app:layout_constraintTop_toTopOf="@id/btnSubmit" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMyShares"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <TableLayout
+            android:id="@+id/tlHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/str_table_header_shares_name"
+                    android:textAlignment="center" />
+
+                <TextView
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/size_5dp"
+                    android:text="@string/str_table_header_volume"
+                    android:textAlignment="center" />
+
+                <TextView
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/size_5dp"
+                    android:text="@string/str_table_header_value"
+                    android:textAlignment="center" />
+
+                <TextView
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/size_5dp"
+                    android:text="@string/str_table_header_profit"
+                    android:textAlignment="center" />
+            </TableRow>
+        </TableLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMyShares"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingVertical="@dimen/size_16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tlHeader" />
+
+        <ProgressBar
+            android:id="@+id/pbLoading2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tlHeader" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

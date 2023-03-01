@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/portfolioFragment">
+
+    <fragment
+        android:id="@+id/portfolioFragment"
+        android:name="com.hrg.tradeapp.ui.main.profile.PortFolioFragment"
+        android:label="PortfolioFragment">
+        <action
+            android:id="@+id/action_portfolioFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rankFragment"
+        android:name="com.hrg.tradeapp.ui.main.rank.RankFragment"
+        android:label="RankFragment" />
+    <fragment
+        android:id="@+id/transactionFragment"
+        android:name="com.hrg.tradeapp.ui.main.transaction.TransactionFragment"
+        android:label="TransactionFragment">
+        <action
+            android:id="@+id/action_transactionFragment_to_addCardBottomSheet"
+            app:destination="@id/addCardBottomSheet" />
+        <action
+            android:id="@+id/action_transactionFragment_to_detailTransactionBottomSheetDialogFragment"
+            app:destination="@id/detailTransactionBottomSheetDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/addCardBottomSheet"
+        android:name="com.hrg.tradeapp.ui.main.transaction.addCardBottomSheet.AddCardBottomSheet"
+        android:label="AddCardBottomSheet" />
+    <dialog
+        android:id="@+id/detailTransactionBottomSheetDialogFragment"
+        android:name="com.hrg.tradeapp.ui.main.transaction.DetailTransactionBottomSheetDialogFragment"
+        android:label="DetailTransactionBottomSheetDialogFragment">
+        <argument
+            android:name="transaction"
+            app:argType="com.hrg.tradeapp.domain.models.Transaction" />
+    </dialog>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.hrg.tradeapp.ui.main.search.SearchFragment"
+        android:label="SearchFragment" >
+        <argument
+            android:name="inputModel"
+            app:argType="com.hrg.tradeapp.util.FakeShare"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+</navigation>

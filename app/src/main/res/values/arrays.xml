@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="arrayCharts">
+        <item>@drawable/ic_chart_1</item>
+        <item>@drawable/ic_chart_15</item>
+        <item>@drawable/ic_chart_2</item>
+        <item>@drawable/ic_chart_16</item>
+        <item>@drawable/ic_chart_3</item>
+        <item>@drawable/ic_chart_17</item>
+        <item>@drawable/ic_chart_4</item>
+        <item>@drawable/ic_chart_18</item>
+        <item>@drawable/ic_chart_5</item>
+        <item>@drawable/ic_chart_19</item>
+        <item>@drawable/ic_chart_6</item>
+        <item>@drawable/ic_chart_20</item>
+        <item>@drawable/ic_chart_7</item>
+        <item>@drawable/ic_chart_21</item>
+        <item>@drawable/ic_chart_8</item>
+        <item>@drawable/ic_chart_22</item>
+        <item>@drawable/ic_chart_9</item>
+        <item>@drawable/ic_chart_23</item>
+        <item>@drawable/ic_chart_10</item>
+        <item>@drawable/ic_chart_24</item>
+        <item>@drawable/ic_chart_11</item>
+        <item>@drawable/ic_chart_25</item>
+        <item>@drawable/ic_chart_12</item>
+        <item>@drawable/ic_chart_26</item>
+        <item>@drawable/ic_chart_13</item>
+        <item>@drawable/ic_chart_27</item>
+        <item>@drawable/ic_chart_14</item>
+        <item>@drawable/ic_chart_28</item>
+    </integer-array>
+</resources>

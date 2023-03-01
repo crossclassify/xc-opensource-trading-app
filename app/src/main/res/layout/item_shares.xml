@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TableRow
+        android:id="@+id/trRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingVertical="@dimen/size_5dp">
+
+        <TextView
+            android:id="@+id/tvSymbol"
+            style="@style/table_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/str_table_header_rank"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/tvAmount"
+            style="@style/table_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingEnd="@dimen/size_5dp"
+            android:text="@string/str_table_header_id"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/tvValue"
+            style="@style/table_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingEnd="@dimen/size_5dp"
+            android:text="@string/str_table_header_profit"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/tvPercentage"
+            style="@style/table_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:paddingEnd="@dimen/size_5dp"
+            android:text="@string/str_table_header_percentage"
+            android:textAlignment="center" />
+    </TableRow>
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvSymbol"-->
+    <!--        style="@style/TextBodyPrimary"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentLeft="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:layout_marginLeft="@dimen/size_16dp"-->
+    <!--        android:paddingVertical="@dimen/size_16dp" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvAmount"-->
+    <!--        style="@style/TextBodyPrimary"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:paddingVertical="@dimen/size_16dp" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvValue"-->
+    <!--        style="@style/TextBodyPrimary"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentRight="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:layout_marginRight="@dimen/size_16dp"-->
+    <!--        android:paddingVertical="@dimen/size_16dp" />-->
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="@dimen/size_8dp"
+        android:background="@color/black_200" />
+
+</RelativeLayout>

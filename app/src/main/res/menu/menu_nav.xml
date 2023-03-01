@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/portfolioFragment"
+        android:icon="@drawable/ic_chart"
+        android:title="@string/str_bottom_nav_portfolio" />
+
+    <item
+        android:id="@+id/transactionFragment"
+        android:icon="@drawable/ic_transaction"
+        android:title="@string/str_bottom_nav_transaction" />
+
+    <item
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/ic_search"
+        android:title="@string/str_bottom_nav_search" />
+
+    <item
+        android:id="@+id/rankFragment"
+        android:icon="@drawable/ic_ranking"
+        android:title="@string/str_bottom_nav_rank" />
+</menu>

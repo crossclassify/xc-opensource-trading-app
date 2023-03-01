@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "870940670401",
+    "project_id": "bita-4099d",
+    "storage_bucket": "bita-4099d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870940670401:android:2dd29d73334e0cb4df9740",
+        "android_client_info": {
+          "package_name": "com.hrg.tradeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870940670401-9it4qt61u4k07rjg2iplu963iubo5qde.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjoEoW619tbTAHC_BG_9-mzJVAl8wUO5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870940670401-9it4qt61u4k07rjg2iplu963iubo5qde.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?colorBackground"
+    android:padding="@dimen/size_16dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/TextTitlePrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_add_card"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <com.crossclassify.trackersdk.utils.view.TrackerEditText-->
+    <!--        android:id="@+id/etCardName"-->
+    <!--        app:fieldName="cardName"-->
+    <!--        android:tag="IncludeContentTracking"-->
+    <!--        style="@style/EditTextPrimary"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="@dimen/size_30dp"-->
+    <!--        android:hint="@string/hint_card_name"-->
+    <!--        android:maxLines="1"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/tvTitle" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvErrorUsername"-->
+    <!--        style="@style/TextError"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:visibility="invisible"-->
+    <!--        app:layout_constraintLeft_toLeftOf="@id/etCardName"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/etCardName" />-->
+
+    <com.crossclassify.trackersdk.utils.view.TrackerEditText
+        android:id="@+id/etCardNumber"
+        style="@style/EditTextPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_30dp"
+        android:hint="@string/hint_card_number"
+        android:inputType="number"
+        android:maxLength="16"
+        android:tag="IncludeContentTracking"
+        app:fieldName="cardNumber"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvErrorPassword"
+        style="@style/TextError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@id/etCardNumber"
+        app:layout_constraintTop_toBottomOf="@id/etCardNumber" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_48dp"
+        android:text="@string/str_submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvErrorPassword" />
+
+    <RelativeLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/blue_100" />
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

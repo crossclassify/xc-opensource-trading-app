@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="?colorBackground">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:animateLayoutChanges="true"
+        android:padding="@dimen/size_16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="@dimen/size_150dp"
+                android:layout_height="@dimen/size_150dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_user"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/circleImageView" />
+
+            <TextView
+                android:id="@+id/tvUsername"
+                style="@style/TextTitlePrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivProfile" />
+
+            <RelativeLayout
+                android:id="@+id/rlInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_16dp"
+                android:background="@drawable/bg_information"
+                android:paddingVertical="@dimen/size_8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvUsername">
+
+                <TextView
+                    android:id="@+id/tvTotalValueField"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="@dimen/size_16dp"
+                    android:text="Total value"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTotalValue"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/size_16dp" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tvTotalValueField"
+                    android:layout_marginHorizontal="@dimen/size_8dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:background="@color/black_200" />
+
+                <TextView
+                    android:id="@+id/tvTotalShareValueField"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divider1"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/size_16dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:text="Total share value"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTotalShareValue"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tvTotalShareValueField"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/size_16dp" />
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tvTotalShareValueField"
+                    android:layout_marginHorizontal="@dimen/size_8dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:background="@color/black_200" />
+
+                <TextView
+                    android:id="@+id/tvBalanceField"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divider2"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/size_16dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:text="Balance"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvBalance"
+                    style="@style/TextTitleSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tvBalanceField"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/size_16dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/loadingUser"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@id/rlInformation"
+                app:layout_constraintTop_toTopOf="@id/tvUsername">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/blue_100" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlShares"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_16dp"
+                android:background="@drawable/bg_information"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rlInformation">
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/tvTitleShares"-->
+                <!--                    style="@style/TextTitleSecondary"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_alignParentLeft="true"-->
+                <!--                    android:layout_alignParentTop="true"-->
+                <!--                    android:layout_marginLeft="@dimen/size_16dp"-->
+                <!--                    android:layout_marginTop="@dimen/size_8dp"-->
+                <!--                    android:text="@string/str_your_shares" />-->
+
+                <TableLayout
+                    android:id="@+id/tlHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/size_8dp">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/table_header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/str_table_header_shares_name"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            style="@style/table_header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/size_5dp"
+                            android:text="@string/str_table_header_volume"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            style="@style/table_header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="2"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/size_5dp"
+                            android:text="@string/str_table_header_value"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            style="@style/table_header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="2"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/size_5dp"
+                            android:text="@string/str_table_header_profit"
+                            android:textAlignment="center" />
+                    </TableRow>
+                </TableLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCrypto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tlHeader"
+                    android:layout_marginBottom="@dimen/size_8dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/loadingShares"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@id/rlShares"
+                app:layout_constraintTop_toTopOf="@id/rlShares">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/blue_100" />
+            </RelativeLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
